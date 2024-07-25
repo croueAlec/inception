@@ -5,23 +5,27 @@ echo "$USER  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudo
 exit
 
 # install utils
-sudo apt update
-sudo apt install curl htop git
+apt update
+apt install curl htop git
 
 # install docker-compose
-sudo curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose;
-
-# install guest additions
-sudo apt install -y build-essential dkms linux-headers-$(uname -r)
-sudo mkdir -p /mnt/cdrom
-sudo mount /dev/cdrom /mnt/cdrom
-sudo /mnt/cdrom/VBoxLinuxAdditions.run
-sudo reboot
+curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose;
+curl -sSL https://get.docker.com/ | sh
+groupadd docker
+usermod -aG docker $USER
+chmod 666 /var/run/docker.sock
 
 # install vscode
-sudo apt install software-properties-common apt-transport-https wget -y
+apt install software-properties-common apt-transport-https wget -y
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt install code
+add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+apt install code
 code --version
+
+# install guest additions
+apt install -y build-essential dkms linux-headers-$(uname -r)
+mkdir -p /mnt/cdrom
+mount /dev/cdrom /mnt/cdrom
+/mnt/cdrom/VBoxLinuxAdditions.run
+reboot
