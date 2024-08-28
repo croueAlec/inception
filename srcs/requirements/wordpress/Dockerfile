@@ -10,21 +10,21 @@ RUN chown -R root:root /var/www/wordpress
 
 # Install and configure Php
 RUN apt-get update && apt-get upgrade && apt-get install -y \
-		php7.3 \
-		php-fpm \
+		php \
+		php7.4-fpm \
 		php-mysql \
 		mariadb-client
 RUN apt-get clean
-COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY conf/www.conf /etc/php/7.4/fpm/pool.d/
 RUN mkdir -p /run/php
 
 # Configure wordpress
 WORKDIR /var/www/wordpress
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
-COPY tools/wordpress_config.sh /usr/local/bin/wordpress_config.sh
+COPY tools/wordpress_config.sh /usr/local/bin/.
 RUN chmod +x /usr/local/bin/wordpress_config.sh
 
 EXPOSE 9000
 
-CMD ["/usr/local/bin/wordpress_config.sh"]
+ENTRYPOINT ["/usr/local/bin/wordpress_config.sh"]

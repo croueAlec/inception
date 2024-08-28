@@ -6,18 +6,24 @@ sleep 10
 # checking if wordpress config already exists
 if [ -f "wp-config.php" ]; then
     echo "Configuration already exists, exiting..."
+    php-fpm7.4 -F
     exit 0
 else
     echo "Configurating wordpress"
 fi
 
 # creating wordpress config
+# echo "wp core download"
+# wp core download
+
+echo "wp config create"
 wp config create	--allow-root \
                     --dbname=$SQL_DATABASE \
                     --dbuser=$SQL_USER \
                     --dbpass=$SQL_PASSWORD \
-                    --dbhost=mariadb:3306 --path='/var/www/wordpress'
+                    --dbhost=mariadb --path='/var/www/wordpress'
 
+echo "wp core install"
 wp core install	--allow-root \
                 --url=http://$DOMAIN_NAME \
                 --title=$WP_TITLE \
@@ -25,4 +31,5 @@ wp core install	--allow-root \
                 --admin_password=$WP_ADMIN_PASS \
                 --admin_email=$WP_ADMIN_EMAIL --path='/var/www/wordpress'
 
+echo "starting php"
 php-fpm7.4 -F
