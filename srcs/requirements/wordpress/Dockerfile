@@ -6,7 +6,8 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 RUN wget https://wordpress.org/wordpress-6.6.1.tar.gz -P /var/www
 WORKDIR /var/www
 RUN tar -xvf wordpress-6.6.1.tar.gz && rm wordpress-6.6.1.tar.gz
-RUN chown -R root:root /var/www/wordpress
+RUN chmod -R 755 /var/www/wordpress && \
+	chown -R root:root /var/www/wordpress
 
 # Install and configure Php
 RUN apt-get update && apt-get upgrade && apt-get install -y \

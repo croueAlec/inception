@@ -21,6 +21,7 @@ stop:
 
 prune: stop
 	docker system prune -a
+	sudo rm -rf /var/db/mariadb/* /var/db/wordpress/*
 
 logs:
 	docker compose -f $(COMPOSE_FILE) logs

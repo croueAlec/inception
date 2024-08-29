@@ -25,7 +25,6 @@ RUN chmod 600 /etc/nginx/ssl/inception.crt && \
 # Setup config
 RUN mkdir -p /var/run/nginx
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-# COPY html/index.html /var/www/html/index.html
 RUN chmod -R 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
