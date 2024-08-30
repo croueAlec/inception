@@ -12,10 +12,7 @@ else
     echo "Configurating wordpress"
 fi
 
-# creating wordpress config
-# echo "wp core download"
-# wp core download
-
+# creating config
 echo "wp config create"
 wp config create	--allow-root \
                     --dbname=$SQL_DATABASE \

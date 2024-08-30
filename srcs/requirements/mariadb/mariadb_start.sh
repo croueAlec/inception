@@ -6,4 +6,4 @@ echo "GRANT ALL PRIVILEGES ON *.* TO '${SQL_USER}'@'%' WITH GRANT OPTION;" >> /e
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
 echo "FLUSH PRIVILEGES;" >> /etc/mysql/init.sql
 
-mysqld_safe
+exec mysqld_safe
