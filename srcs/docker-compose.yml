@@ -14,6 +14,7 @@ services:
       - "3306"
     restart: unless-stopped
     init: true
+    stop_grace_period: 5s
 
   wordpress:
     container_name: wordpress
@@ -30,8 +31,9 @@ services:
       - "9000"
     depends_on:
       - mariadb
-    restart: on-failure
+    restart: unless-stopped
     init: true
+    stop_grace_period: 5s
 
   nginx:
     container_name: nginx
@@ -48,8 +50,9 @@ services:
       - "443:443"
     depends_on:
       - wordpress
-    restart: on-failure
+    restart: unless-stopped
     init: true
+    stop_grace_period: 5s
 
 networks:
   inception:
@@ -63,11 +66,11 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/var/db/wordpress'
+      device: '/home/acroue/data/wordpress'
   mariadb:
     name: mariadb-data
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/var/db/mariadb'
+      device: '/home/acroue/data/mariadb'
