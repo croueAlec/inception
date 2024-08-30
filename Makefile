@@ -11,7 +11,7 @@ BWHITE    = \033[1;37m
 BBLUE    = \033[1;34m
 
 # Variables
-VOLUMES=/home/acroue/data
+VOLUMES_PATH=/home/acroue/data
 COMPOSE_FILE=srcs/docker-compose.yml
 
 # Rules
