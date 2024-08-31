@@ -74,3 +74,8 @@ volumes:
 	@echo "$(GREEN)Creating volumes$(DEFAULT)"
 	@mkdir -p $(VOLUMES_PATH)/mariadb
 	@mkdir -p $(VOLUMES_PATH)/wordpress
+
+loadbackup: stop
+	@echo "$(GREEN)Loading backup of website$(DEFAULT)"
+	@sudo cp -R /home/acroue/Backup/* /home/acroue/data/.
+	@make start
