@@ -25,9 +25,6 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 COPY tools/wordpress_config.sh /usr/local/bin/.
 RUN chmod +x /usr/local/bin/wordpress_config.sh
-# Load theme for bonus
-RUN mkdir -p wp-content/themes/kubio
-COPY tools/kubio wp-content/themes/kubio
 
 EXPOSE 9000
 
