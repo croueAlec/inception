@@ -1,3 +1,4 @@
+echo Welcome
 # set user as sudo
 su
 adduser $USER sudo
