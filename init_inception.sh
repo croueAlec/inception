@@ -7,7 +7,7 @@ exit
 
 # install utils
 apt update
-apt install curl htop git
+apt install curl htop git vim
 
 # install docker-compose
 curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
@@ -27,6 +27,7 @@ code --version
 # install guest additions
 apt install -y build-essential dkms linux-headers-$(uname -r)
 mkdir -p /mnt/cdrom
+  ## on virtual box insert the cd [ Devices > Insert Guest Additions CD Image ] ##
 mount /dev/cdrom /mnt/cdrom
 /mnt/cdrom/VBoxLinuxAdditions.run
 reboot
